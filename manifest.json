@@ -1,0 +1,7 @@
+{
+  "name": "Font Preview",
+  "id": "742644348822890136",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html"
+}

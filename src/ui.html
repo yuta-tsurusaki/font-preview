@@ -1,0 +1,29 @@
+<script>
+    parent.postMessage({pluginMessage: { type: 'name' }}, '*');
+</script>
+<div class="main-container">
+  <div class="nav-container">
+    <div class="nav-menu-wrapper">
+      <div id="name" class="nav-menu" onClick="fetchList(this)">Name</div>
+      <div id="style" class="nav-menu" onClick="fetchList(this)">Style</div>
+      <div id="size" class="nav-menu" onClick="fetchList(this)">Size</div>
+    </div>
+    <button class="btn-apply">Apply</button>
+  </div>
+  <div class="selector-container"></div>
+</div>
+<script>
+    const fetchList = e => {
+        parent.postMessage({pluginMessage: { type: e.id }}, '*');
+    };
+    onmessage = event => {
+        const selector = window.document.getElementsByClassName('selector-container');
+        const {pluginMessage} = event.data.pluginMessage;
+        switch(pluginMessage.type) {
+            case 'nameList':
+                const {fontList} = pluginMessage.data;
+                fontList.forEach(font => console.log(font.name))
+                break;
+        }
+    }
+</script>
